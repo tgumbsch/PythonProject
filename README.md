@@ -4,6 +4,6 @@ A generic Python project template that computes the cummulative sum in Python, R
 ```
 chmod +x ./Run.sh
 ./Run.sh
-```.  
+```   
 
 *TO DO:* MATLAB
