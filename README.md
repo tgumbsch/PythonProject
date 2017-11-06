@@ -1,2 +1,2 @@
-# PythonProject
-A generic python Project template
+# PythoProject
+A generic Python project template
