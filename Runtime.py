@@ -1,10 +1,21 @@
 import numpy as np
+import time
 
 from cpp.cpp import CppCUMSUM
 from py.py import PyCUMSUM
 from R.R import RCUMSUM
-methods = [PyCUMSUM, RCUMSUM, CppCUMSUM]
-names = ['Python', 'R', 'C++']
+
+
+class NpCUMSUM:
+
+    def __init__(self, seq):
+        start = time.time()
+        self.cumsum = np.cumsum(seq)
+        self.duration = time.time() - start
+
+
+methods = [PyCUMSUM, RCUMSUM, CppCUMSUM, NpCUMSUM]
+names = ['Python', 'R', 'C++', 'Numpy']
 
 from matplotlib import pyplot as plt
 
@@ -13,7 +24,7 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
 trials = 3
-ranges = [int(k) for k in np.logspace(0, 10, 5, base=2)]
+ranges = [int(k) for k in np.logspace(0, 19, 10, base=2)]
 
 
 def Runtime(method):
