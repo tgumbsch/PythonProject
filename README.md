@@ -10,9 +10,9 @@ chmod +x ./Run.sh
 
 ## Requirements
 
-- `Python` 
-- `R` and the `xts` library 
-- `C++14` compiler and `googletest`  
+- `Python` and the `pandas` package. 
+- `R` and the `xts` package   
+- `gcc` version 6.0 or higher and `googletest`    
 
 
 ## To Do
