@@ -19,7 +19,7 @@ def create_lib(n):
     class Vector(object):
         lib = cdll.LoadLibrary('./cpp/CPP.so')  # class level loading lib
         lib.new_vector.restype = c_void_p
-        lib.new_vector.argtypes = []
+        lib.new_vector.argtypes = [c_int]
         lib.delete_vector.restype = None
         lib.delete_vector.argtypes = [c_void_p]
         lib.vector_size.restype = c_int
@@ -31,8 +31,8 @@ def create_lib(n):
         lib.CUMSUM.argtypes = [c_void_p, c_double * n, c_int]
         lib.CUMSUM.restype = None
 
-        def __init__(self):
-            self.vector = Vector.lib.new_vector()  # pointer to new vector
+        def __init__(self, length):
+            self.vector = Vector.lib.new_vector(c_int(length))  # pointer to new vector
 
         def __del__(self):  # when reference count hits 0 in Python,
             if Vector:
@@ -66,7 +66,7 @@ class CppCUMSUM:
 
         start = time.time()
         Vector = create_lib(len(seq))
-        cppcumsum = Vector()
+        cppcumsum = Vector(len(seq))
 
         loc = cppcumsum.CUMSUM(seq)
 

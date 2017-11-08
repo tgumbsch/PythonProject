@@ -5,12 +5,13 @@ extern "C" {
     void CUMSUM(std::vector<double>* v, double *arr, int length){
         // It is possible to change the testing function here, K-S test or Mann-Whitney, for instance
         std::vector<double> seq(arr, arr + length);
-        cumsum(seq,v);
+        std::vector<double> &cseq = *v;
+        cumsum(seq,cseq);
     }
 
     // Helper fucntions to build the vector containing the time series
-    std::vector<double>* new_vector(){
-        return new std::vector<double>;
+    std::vector<double>* new_vector(int length){
+        return new std::vector<double>(length);
     }
     void delete_vector(std::vector<double>* v){
         // std::cout << "destructor called in C++ for " << v << std::endl;

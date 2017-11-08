@@ -8,15 +8,15 @@
 TEST(cumsum, zerohandle){
     std::vector<double> seq = {};
     std::vector<double> v = {};
-    cumsum(seq, &v);
+    cumsum(seq, v);
     EXPECT_EQ(seq,v);
 }
 
 TEST(cumsum, example){
     std::vector<double> seq = {1,2,3,4};
     std::vector<double> sol = {1,3,6,10};
-    std::vector<double> v = {};
-    cumsum(seq, &v);
+    std::vector<double> v(seq.size());
+    cumsum(seq, v);
     EXPECT_EQ(sol,v);
 }
 
@@ -32,8 +32,8 @@ TEST(cumsum, stdrandom){
     }
     std::vector<double> sol(seq.size());
     std::partial_sum(seq.begin(), seq.end(), sol.begin());
-    std::vector<double> v = {};
-    cumsum(seq, &v);
+    std::vector<double> v(seq.size());
+    cumsum(seq, v);
     EXPECT_EQ(sol,v);
 }
 
