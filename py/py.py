@@ -8,6 +8,8 @@ import os
 import logging
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+if not os.path.exists(os.path.join('py', 'logging')):
+    os.makedirs(os.path.join('py', 'logging'))
 file_handler = logging.FileHandler(os.path.join('py', 'logging', 'Python_log.log'))
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
@@ -65,13 +67,11 @@ if __name__ == '__main__':
     # Read the file
     seq = pd.read_csv("%s/%s" % (args.datadir, 'seq.csv'), parse_dates=[0], usecols=[0, 1])  # , index_col=0)
 
-    #Set logging level to debug
+    # Set logging level to debug
     logger.setLevel(logging.DEBUG)
 
-    #Computation
+    # Computation
     cseq = pd.DataFrame(cumsum(seq.values[:, 1].tolist()), index=seq.values[:, 0])
 
-    #Write to file
+    # Write to file
     cseq.to_csv("%s/%s" % (args.outdir, 'out.csv'), header=False)
-
-
